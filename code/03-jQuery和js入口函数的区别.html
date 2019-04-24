@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-jQuery和js入口函数的区别</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        window.onload = function () {
+            // 1.通过原生 JS 入口函数可以拿到 DOM 元素
+            var img = document.getElementsByTagName("img")[0];
+            console.log(img);
+
+            // 2.通过原生 JS 入口函数可以拿到 DOM 元素的宽高
+            var width = window.getComputedStyle(img).width;
+            console.log("onload", width);
+        };
+
+        /**
+         * 原生 JS 和 jQuery 入口函数的加载模式不同
+         * 原生 JS 会等到 DOM 元素加载完毕，并且图片也加载完毕才会执行
+         * jQuery 会等到 DOM 元素加载完毕，但不会等到图片也加载完毕就会执行
+         */
+        $(document).ready(function () {
+            // 1.通过 jQuery 入口函数可以拿到 DOM 元素
+            var $img = $("img");
+            console.log($img);
+
+            // 2.通过 jQuery 入口函数不可以拿到 DOM 元素的宽高(注意清除缓存)
+            var $width = $img.width();
+            console.log("ready", $width);
+        });
+
+        /*
+        输出结果：
+        jQuery.fn.init [img, prevObject: jQuery.fn.init(1), context: document, selector: "img"]
+        ready 0
+          <img src="https://www.jquery123.com/assets/images/jquery-logo-md.png" alt="">
+        onload 339.994px
+        */
+
+
+        /**
+         * 原生 JS 如果编写了多个入口函数，后面编写的会覆盖前面编写的
+         * jQuery 中编写多个入口函数，后面的不会覆盖前面
+         */
+        window.onload = function () {
+            alert("hello china1")
+        };
+
+        window.onload = function () {
+            alert("hello china2")
+        };
+
+        $(document).ready(function () {
+            alert("hello china3")
+        });
+
+        $(document).ready(function () {
+            alert("hello china4")
+        });
+    </script>
+</head>
+<body>
+<img src="https://www.jquery123.com/assets/images/jquery-logo-md.png" alt>
+</body>
+</html>

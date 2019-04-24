@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-jQuery冲突问题</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/test.js"></script> // test.js 中使用了$造成冲突
+    <script>
+        // 方法1.释放$的使用权
+        // 注意：释放操作必须在编写其他 jQuery 代码之前
+        //      释放之后就不能再使用$，改为使用 jQuery
+        jQuery.noConflict();
+
+        jQuery(function () {
+            alert("hello world1");
+        });
+
+        // 方法2.自定义一个访问符号
+        var nj = jQuery.noConflict();
+
+        nj(function () {
+            alert("hello world2");
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
