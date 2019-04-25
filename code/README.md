@@ -2,6 +2,7 @@
 
 ### jQuery 是什么？
 ![](http://qiniuyun.iamnancy.top/jquery-logo-md.png)
+
 jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主要的用途是用来做查询(jQuery = js + Query)，正如 jQuery 官方 logo 副标题所说(write less, do more)使用 jQuery 能让我们对 HTML文档遍历和操作、事件处理、动画以及 Ajax 变得更加简单。
 
 ### 浏览器兼容
@@ -133,5 +134,259 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     nj(function () {
         alert("hello world2");
     });
+</script>
+```
+
+## jQuery 核心函数
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    // $(); 代表调用 jQuery 的核心函数
+
+    // 1.接收一个函数
+    $(function () {
+        alert("hello world");
+
+        // 2.接收一个字符串
+        // 2.1 接收一个字符串选择器
+        // 返回一个 jQuery 对象，对象中保存了找到的 DOM 元素
+        var $box1 = $(".box1");
+        var $box2 = $("#box2");
+        console.log($box1);
+        console.log($box2);
+
+        // 2.2 接收一个字符串代码片段
+        // 返回一个 jQuery 对象，对象中保存创建的 DOM 元素
+        var $p = $("<p>我是段落</p>");
+        console.log($p);
+        $box1.append($p);
+
+        // 3.接收一个 DOM 元素
+        // 会被包装成 jQuery 对象返回。
+        var span = document.getElementsByTagName("span")[0];
+        console.log(span);
+        var $span = $("span");
+        console.log($span);
+    });
+</script>
+```
+
+### jQuery 对象
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 1.什么是 jQuery 对象？
+         * jQuery 对象是一个伪数组
+         *
+         * 2.什么是伪数组？
+         * 有 0 到 length-1 的属性，并且有 length 属性
+         */
+        $div = $("div");
+        console.log($div);
+
+        /* 输出结果
+        jQuery.fn.init(3) [div, div, div, prevObject: jQuery.fn.init(1), context: document, selector: "div"]
+        0: div
+        1: div
+        2: div
+        context: document
+        length: 3
+        prevObject: jQuery.fn.init [document, context: document]
+        selector: "div"
+        __proto__: Object(0)
+        */
+    });
+</script>
+```
+
+## jQuery 静态方法
+### jQuery 静态方法和实例方法
+```
+<script>
+    // 1.定义一个类
+    function AClass() {
+    }
+
+    // 2.给这个类添加一个静态方法
+    // 直接添加给类的就是静态方法
+    AClass.staticMethod = function () {
+        alert("staticMethod");
+    };
+
+    // 静态方法通过类名调用
+    AClass.staticMethod();
+
+    // 3.给这个类添加一个实例方法
+    AClass.prototype.instanceMethod = function () {
+        alert("instanceMethod");
+    };
+
+    // 实例方法通过类的实例调用
+    var a = new AClass();
+    a.instanceMethod();
+</script>
+```
+
+### jQuery-each 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    var arr = [1, 3, 5, 7, 9];
+    var obj = {0:1, 1:3, 2:5, 3:7, 4:11, length:5};
+    /**
+     * 第一个参数：value
+     * 第二个参数：index
+     * 注意点：原生的 forEach 方法只能遍历数组，不能遍历伪数组
+     */
+    arr.forEach(function (value, index) {
+        // console.log(index, value);
+    });
+
+    // obj.forEach(function (value, index) {
+    //     console.log(index, value);
+    // });
+    /*Uncaught TypeError: obj.forEach is not a function*/
+
+    /**
+     * 1.利用 jQuery 的 each 静态方法遍历数组
+     * 第一个参数：index
+     * 第二个参数：value
+     */
+    $.each(arr, function (index, value) {
+        console.log(index, value);
+    });
+
+    // jQuery 的 each 方法遍历伪数组
+    $.each(obj, function (index, value) {
+        console.log(index, value);
+    })
+</script>
+```
+
+### jQuery-map 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    var arr = [1, 3, 5, 7, 9];
+    var obj = {0:1, 1:3, 2:5, 3:7, 4:11, length:5};
+    // 1.利用原生 JS 的 map 方法遍历
+    arr.map(function (value, index, array) {
+        console.log(index, value, array);
+    });
+
+    // 不能遍历伪数组(报错)
+    // obj.map(function (value, index, array) {
+    //     console.log(index, value, array);
+    // })
+
+
+    /**
+     * 第一个参数：要遍历的数组
+     * 第二个参数：每遍历一个元素之后执行的回调函数
+     * 回调函数的参数：
+     *     第一个参数：遍历到的元素
+     *     第二个参数：遍历到的索引
+     * 注意点：和 jQuery 中的 each 静态方法一样，map 静态方法也可以遍历伪数组
+     */
+    $.map(arr, function (value, index) {
+        console.log(index, value);
+    });
+
+    var res = $.map(obj, function (value, index) {
+        console.log(index, value);
+    });
+
+    var res2 = $.each(obj, function (index, value) {
+        console.log(index, value);
+    });
+
+
+    /**
+     * jQuery 中的 each 静态方法和 map 静态方法的区别：
+     * each 静态方法默认的返回值就是遍历的对象
+     * map 静态方法默认的返回值是一个空数组
+     *
+     *
+     * each 静态方法不支持在回调函数中对遍历的数组进行处理
+     * map 静态方法可以在回调函数中通过 return 对遍历的数组进行处理，然后生成新的数组返回
+     */
+    console.log(res);
+    console.log(res2);
+</script>
+```
+
+### jQuery 中的其它静态方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    var str = "    hello    ";
+    var arr = [1, 3, 5, 7, 9];
+    var arrlike = {0:1, 1:3, 2:5, 3:7, 4:11, length:5};
+    var obj = {"name": "fwr", "age": 33};
+    var fn = function () {};
+    var w = window;
+    /**
+     * $.trim();
+     * 作用：去除字符串两端的空格
+     * 参数：string
+     * 返回值：新的 string
+     */
+    var res = $.trim(str);
+
+    console.log("----" + str + "----");
+    console.log("----" + res + "----");
+
+    /**
+     * $.isWindow();
+     * 作用：判断传入的对象是否是 window 对象
+     * 返回值：true/false
+     */
+
+
+    /**
+     * $.isArray();
+     * 作用：判断传入的对象是否是真数组
+     * 返回值：true/false
+     */
+    res = $.isArray(arr);
+    console.log(res);
+    res2 = $.isArray(arrlike);
+    console.log(res2);
+
+
+    /**
+     * $.isFunction();
+     * 作用：判断传入的对象是否是一个函数
+     * 返回值：true/false
+     */
+    var res = $.isFunction(w);
+    console.log(res);
+</script>
+```
+
+### jQuery-holdReady 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    /**
+     * $.holdReady(true);
+     * 作用：暂停 ready 执行
+     */
+    $.holdReady(true);
+    $(document).ready(function () {
+        alert("ready")
+    });
+</script>
+</head>
+<body>
+<button>恢复ready事件</button>
+<script>
+    var btn = document.getElementsByTagName("button")[0];
+    btn.onclick = function () {
+        // alert("btn");
+        $.holdReady(false); // 恢复 ready 执行
+    }
 </script>
 ```

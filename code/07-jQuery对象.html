@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07-jQuery对象</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            /**
+             * 1.什么是 jQuery 对象？
+             * jQuery 对象是一个伪数组
+             *
+             * 2.什么是伪数组？
+             * 有 0 到 length-1 的属性，并且有 length 属性
+             */
+            $div = $("div");
+            console.log($div);
+
+            /* 输出结果
+            jQuery.fn.init(3) [div, div, div, prevObject: jQuery.fn.init(1), context: document, selector: "div"]
+            0: div
+            1: div
+            2: div
+            context: document
+            length: 3
+            prevObject: jQuery.fn.init [document, context: document]
+            selector: "div"
+            __proto__: Object(0)
+            */
+        });
+    </script>
+</head>
+<body>
+<div>div1</div>
+<div>div2</div>
+<div>div3</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-jQuery中的其它静态方法</title>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        var str = "    hello    ";
+        var arr = [1, 3, 5, 7, 9];
+        var arrlike = {0:1, 1:3, 2:5, 3:7, 4:11, length:5};
+        var obj = {"name": "fwr", "age": 33};
+        var fn = function () {};
+        var w = window;
+        /**
+         * $.trim();
+         * 作用：去除字符串两端的空格
+         * 参数：string
+         * 返回值：新的 string
+         */
+        var res = $.trim(str);
+
+        console.log("----" + str + "----");
+        console.log("----" + res + "----");
+
+        /**
+         * $.isWindow();
+         * 作用：判断传入的对象是否是 window 对象
+         * 返回值：true/false
+         */
+
+
+        /**
+         * $.isArray();
+         * 作用：判断传入的对象是否是真数组
+         * 返回值：true/false
+         */
+        res = $.isArray(arr);
+        console.log(res);
+        res2 = $.isArray(arrlike);
+        console.log(res2);
+
+
+        /**
+         * $.isFunction();
+         * 作用：判断传入的对象是否是一个函数
+         * 返回值：true/false
+         */
+        var res = $.isFunction(w);
+        console.log(res);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
