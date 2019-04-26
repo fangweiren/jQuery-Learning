@@ -495,3 +495,37 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery prop 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * prop 方法
+         * 特点与 attr 方法一致
+         * removeProp 方法
+         * 特点与 removeAttr 方法一致
+         */
+
+        $("span").eq(0).prop("demo", "hello");
+        $("span").eq(1).prop("demo", "world");
+        console.log($("span").prop("demo"));
+
+        $("span").removeProp("demo");
+
+        /* 注意点：prop 方法不仅能够操作属性，还能操作属性节点
+
+        官方推荐在操作属性节点时，具有 true 和 false 两个属性的属性节点，如 checked，selected 或者 disabled 使用 prop()，
+        其他的使用 attr()
+        */
+
+        console.log($("span").prop("class"));
+        $("span").prop("class", "box");
+
+
+        console.log($("input").prop("checked")); // true/false
+        console.log($("input").attr("checked")); // checked/undefined
+    });
+</script>
+```
