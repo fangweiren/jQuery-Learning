@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20-jQuery文本值相关操作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            /*
+            1.html([val|fn])
+            与原生 JS 中的 innerHTML 一样
+
+            2.text([val|fn])
+            与原生 JS 中的 innerText 一样
+
+            3.val([val|fn|arr])
+             */
+            var btns = document.getElementsByTagName("button");
+            btns[0].onclick = function () {
+                $("div").html("<p>我是MT<span>我是提莫</span></p>");
+            };
+
+            btns[1].onclick = function () {
+                console.log($("div").html());
+            };
+
+            btns[2].onclick = function () {
+                $("div").text("<p>我是MT<span>你是谁</span></p>");
+            };
+
+            btns[3].onclick = function () {
+                console.log($("div").text());
+            };
+
+            btns[4].onclick = function () {
+                $("input").val("请输入内容");
+            };
+
+            btns[5].onclick = function () {
+                console.log($("input").val());
+            };
+        });
+    </script>
+</head>
+<body>
+<button>设置 html</button>
+<button>获取 html</button>
+<button>设置 text</button>
+<button>获取 text</button>
+<button>设置 value</button>
+<button>获取 value</button>
+<div></div>
+<input type="text">
+</body>
+</html>

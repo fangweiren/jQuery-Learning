@@ -583,3 +583,45 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
 </script>`
 
 ```
+
+### jQuery HTML 代码/文本/值相关操作
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /*
+        1.html([val|fn])
+        与原生 JS 中的 innerHTML 一样
+
+        2.text([val|fn])
+        与原生 JS 中的 innerText 一样
+
+        3.val([val|fn|arr])
+         */
+        var btns = document.getElementsByTagName("button");
+        btns[0].onclick = function () {
+            $("div").html("<p>我是MT<span>我是提莫</span></p>");
+        };
+
+        btns[1].onclick = function () {
+            console.log($("div").html());
+        };
+
+        btns[2].onclick = function () {
+            $("div").text("<p>我是MT<span>你是谁</span></p>");
+        };
+
+        btns[3].onclick = function () {
+            console.log($("div").text());
+        };
+
+        btns[4].onclick = function () {
+            $("input").val("请输入内容");
+        };
+
+        btns[5].onclick = function () {
+            console.log($("input").val());
+        };
+    });
+</script>
+```
