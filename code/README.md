@@ -693,3 +693,27 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery scrollTop 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        var btns = document.getElementsByTagName("button");
+
+        btns[0].onclick = function () {
+            // 获取元素滚动的偏移位
+            // console.log($(".scroll").scrollTop());
+            // 获取网页滚动的偏移位
+            console.log($("html").scrollTop() + $("body").scrollTop()); // 注意点：不同浏览器兼容性写法
+        };
+
+        btns[1].onclick = function () {
+            // 设置元素滚动的偏移位
+            // $(".scroll").scrollTop(300);
+            // 设置网页滚动的偏移位
+            $("html, body").scrollTop(300); // 不同浏览器兼容性写法
+        }
+    });
+</script>
+```
