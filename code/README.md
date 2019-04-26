@@ -653,3 +653,43 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 尺寸和位置操作
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        var btns = document.getElementsByTagName("button");
+        // 监听获取
+        btns[0].onclick = function () {
+            // 获取元素的宽度
+            // console.log($(".father").width());
+
+            // offset([coordinates])
+            // 作用：获取元素距离窗口的偏移位
+            console.log($(".son").offset().left);
+
+            // position()
+            // 作用：获取元素距离定位元素的偏移位
+            console.log($(".son").position().left);
+        };
+
+        // 监听设置
+        btns[1].onclick = function () {
+            // 设置元素的宽度
+            // $(".father").width("500px")
+
+            // 设置元素距离窗口的偏移位
+            $(".son").offset({
+                left: 10
+            });
+
+            /* 注意点：position 方法只能获取不能设置，下面代码无效
+            $(".son").position({
+                left: 10
+            })
+            */
+        }
+    });
+</script>
+```
