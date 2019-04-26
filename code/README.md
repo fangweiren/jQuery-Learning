@@ -464,3 +464,34 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery attr 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * attr(name|pro|key,val|fn)
+         * 作用：获取或设置属性节点的值。
+         * 可以传递一个参数，也可以传递两个参数
+         * 如果传递一个参数，代表获取属性节点的值
+         * 如果传递两个参数，代表设置属性节点的值
+         *
+         * 注意点：
+         * 传递一个参数：无论找到多少个元素，都只会返回第一个元素指定的属性节点的值
+         * 传递两个参数：找到多少个元素，就设置多少个元素；如果设置的属性节点不存在，系统会自动新增
+         *
+         * removeAttr(name)
+         * 作用：删除属性节点
+         *
+         * 注意点：会删除所有找到元素的属性节点
+         */
+
+        console.log($("span").attr("class")); // span1
+        $("span").attr("class", "box"); // 两个 span 的 class 属性都变为 class="box"
+
+        // $("span").removeAttr("class");
+        $("span").removeAttr("class name"); // 删除 class 和 name 属性节点
+    });
+</script>
+```
