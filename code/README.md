@@ -415,3 +415,52 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+## jQuery 属性
+### jQuery 属性和属性节点
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 1.什么是属性？
+         * 对象身上保存的变量就是属性。
+         * =============================
+         * 2.如何操作属性？
+         * 赋值：对象.属性名称 = 值
+         * 获取：对象.属性名称
+         * --------another---------
+         * 赋值：对象["属性名称"] = 值
+         * 获取：对象["属性名称"]
+         * =============================
+         * 3.什么是属性节点？
+         * <span name="sp"></span>
+         * 在 HTML 标签中添加的属性就是属性节点。
+         * =============================
+         * 4.如何操作属性节点？
+         * DOM元素.setAttribute("属性名称", "值");
+         * DOM元素.getAttribute("属性名称")；
+         * =============================
+         * 5.属性和属性节点有什么区别？
+         * 任何对象都有属性，但是只有 DOM 对象才有属性节点。
+         */
+
+        // 操作属性
+        function Person() {
+
+        }
+
+        var p = new Person();
+        p.name = "Lily";
+        console.log(p.name);
+        p["age"] = 19;
+        console.log(p["age"]);
+        console.log(p);
+
+        // 操作属性节点
+        var span = document.getElementsByTagName("span")[0];
+        span.setAttribute("name", "Lily");
+        console.log(span.getAttribute("name"));
+    });
+</script>
+```
