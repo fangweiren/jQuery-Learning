@@ -625,3 +625,31 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+## jQuery CSS 操作
+### jQuery CSS 方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.逐个设置
+        // $("div").css("width", "100px");
+        // $("div").css("height", "100px");
+        // $("div").css("background", "red");
+
+        // 2.链式设置
+        // 注意点：链式操作如果大于3步，建议分开
+        // $("div").css("width", "100px").css("height", "100px").css("background", "blue");
+
+        // 3.批量设置
+        $("div").css({
+            width: "100px",
+            height: "100px",
+            background: "yellow"
+        });
+
+        // 4.获取 CSS 样式值
+        console.log($("div").css("width"));
+    });
+</script>
+```
