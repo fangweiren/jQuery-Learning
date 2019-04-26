@@ -390,3 +390,28 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     }
 </script>
 ```
+
+## jQuery 选择器
+### jQuery 内容选择器
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // :empty 作用：找到既没有文本内容也没有子元素的指定元素
+        var $div = $("div:empty");
+        console.log($div);
+
+        // :parent 作用：找到有文本内容或有子元素的指定元素
+        var $div = $("div:parent");
+        console.log($div);
+
+        // :contains(text) 作用：找到包含指定文本内容的指定元素
+        var $div = $("div:contains('我是div')");
+        console.log($div);
+
+        // :has(selector) 作用：找到包含指定子元素内容的指定元素
+        var $div = $("div:has('p')");
+        console.log($div);
+    });
+</script>
+```
