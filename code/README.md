@@ -529,3 +529,24 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### attr 和 prop 方法练习
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.给按钮添加点击事件
+        var btn = document.getElementsByTagName("button")[0];
+        btn.onclick = function () {
+            // 2.获取输入框输入的内容
+            var input = document.getElementsByTagName("input")[0];
+            var text = input.value;
+            // 3.修改 img 的 src 属性节点的值
+            $("img").attr("src", text); // 推荐使用
+            // $("img").prop("src", text);
+            // 4.运行，在输入框输入：https://img.alicdn.com/tfs/TB1_uT8a5ERMeJjSspiXXbZLFXa-143-59.png
+        }
+
+    });
+</script>
+```
