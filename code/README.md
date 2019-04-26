@@ -550,3 +550,36 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 类操作相关方法
+``<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 1.addClass(class|fn)
+         * 作用：添加一个类
+         * 如果要添加多个，多个类名之间用空格隔开
+         *
+         * 2.removeClass([class|fn])
+         * 作用：删除一个类
+         * 如果要删除多个，多个类名之间用空格隔开
+         *
+         * 3.toggleClass(class|fn[,sw])
+         * 作用：如果存在（不存在）就删除（添加）一个类。(切换类)
+         */
+        var btns = document.getElementsByTagName("button");
+        btns[0].onclick = function () {
+            $("div").addClass("class1 class2");
+        };
+
+        btns[1].onclick = function () {
+            $("div").removeClass("class2");
+        };
+
+        btns[2].onclick = function () {
+            $("div").toggleClass("class1 class2");
+        };
+    });
+</script>`
+
+```
