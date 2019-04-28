@@ -849,3 +849,21 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 自定义事件
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 想要自定义事件，必须满足两个条件：
+         * 1.事件必须通过 on 绑定
+         * 2.事件必须通过 trigger 来触发
+         */
+        $(".son").on("myClick", function () {
+            alert("son");
+        });
+        $(".son").trigger("myClick");
+    });
+</script>
+```
