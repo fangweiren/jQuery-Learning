@@ -779,3 +779,36 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 事件冒泡和默认行为
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 1.什么是事件冒泡？
+         * 2.如何阻止事件冒泡？
+         * 3.什么是默认行为？
+         * 4.如何阻止默认行为？
+         */
+        $(".son").click(function (event) {
+            alert("son");
+            // 阻止事件冒泡两种方式
+            // return false;
+            event.stopPropagation();
+        });
+
+        $(".father").click(function () {
+            alert("father")
+        });
+
+        // 默认点击 a 标签会跳转到百度
+        $("a").click(function (event) {
+            alert("弹出注册框");
+            // 阻止默认行为两种方式
+            // return false;
+            event.preventDefault();
+        });
+    });
+</script>
+```
