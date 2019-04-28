@@ -552,7 +552,8 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
 ```
 
 ### jQuery 类操作相关方法
-``<script src="js/jquery-1.12.4.js"></script>
+```
+<script src="js/jquery-1.12.4.js"></script>
 <script>
     $(function () {
         /**
@@ -580,8 +581,7 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
             $("div").toggleClass("class1 class2");
         };
     });
-</script>`
-
+</script>
 ```
 
 ### jQuery HTML 代码/文本/值相关操作
