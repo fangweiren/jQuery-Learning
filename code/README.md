@@ -717,3 +717,30 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+## jQUery 事件
+### jQUery 事件绑定
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * jQuery 中两种事件绑定方式
+         * 1.eventName(fn);
+         * 部分事件 jQuery 没有实现，所以不能添加
+         *
+         * 2.on(eventName, fn);
+         * 所有 js 事件都可添加
+         */
+        // 第一种方式
+        $("button").click(function () {
+            alert("hello world")
+        });
+
+        // 第二种方式
+        $("button").on("click", function () {
+            alert("hello Lily")
+        })
+    });
+</script>
+```
