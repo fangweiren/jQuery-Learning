@@ -718,8 +718,8 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
 </script>
 ```
 
-## jQUery 事件
-### jQUery 事件绑定
+## jQuery 事件
+### jQuery 事件绑定
 ```
 <script src="js/jquery-1.12.4.js"></script>
 <script>
@@ -741,6 +741,41 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
         $("button").on("click", function () {
             alert("hello Lily")
         })
+    });
+</script>
+```
+
+### jQuery 事件解绑
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        function test1() {
+            alert("hello world")
+        }
+        function test2() {
+            alert("hello Lily")
+        }
+        $("button").click(test1);
+
+        $("button").click(test2);
+
+        $("button").mouseleave(function () {
+            alert("hello Tom")
+        });
+
+        $("button").mouseenter(function () {
+            alert("hello David")
+        });
+
+        // off 方法如果不传递参数，会移除所有事件
+        // $("button").off();
+
+        // off 方法如果传递一个参数，会移除所有指定类型的事件
+        // $("button").off("click");
+
+        // off 方法如果传递两个参数，会移除所有指定类型的指定事件
+        $("button").off("click", test1);
     });
 </script>
 ```
