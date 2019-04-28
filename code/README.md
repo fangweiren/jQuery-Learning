@@ -812,3 +812,40 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 事件自动触发
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        $(".son").click(function () {
+            alert("son");
+        });
+
+        $(".father").click(function () {
+            alert("father")
+        });
+
+        $("input[type='submit']").click(function () {
+            alert("submit");
+        });
+
+        // $(".father").trigger("click");
+        // $(".father").triggerHandler("click");
+
+        /**
+         * trigger：如果利用 trigger 自动触发事件，会触发事件冒泡
+         * triggerHandler：如果利用 triggerHandler 自动触发事件，不会触发事件冒泡
+         */
+        // $(".son").trigger("click");
+        // $(".son").triggerHandler("click");
+
+        /**
+         * trigger：如果利用 trigger 自动触发事件，会触发默认行为
+         * triggerHandler：如果利用 triggerHandler 自动触发事件，不会触发默认行为
+         */
+        // $("input[type='submit']").trigger("click");
+        $("input[type='submit']").triggerHandler("click");
+    });
+</script>
+```
