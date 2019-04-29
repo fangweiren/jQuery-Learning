@@ -920,3 +920,56 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 事件委托
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 1.什么是事件委托？
+         * 请别人帮忙做事，然后将结果返回
+         */
+        $("button").click(function () {
+            $("ul").append("<li>我是新增的li</li>")
+        });
+        /*
+        在 jQuery 中，如果通过核心函数找到的元素不止一个，那么在添加事件的时候，jQuery 会遍历所有找到的元素，
+        给所有找到的元素添加事件
+         */
+
+        // 无法打印点击 button 按钮后新增的li
+        // $("ul>li").click(function () {
+        //     console.log($(this).html());
+        // });
+
+        // 把 li 的 click 事件委托给 ul 监听 (li 事件冒泡给 ul)
+        $("ul").delegate("li", "click", function () {
+            console.log($(this).html());
+        })
+    });
+</script>
+
+// jQuery 事件委托练习
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        var $mask;
+        $("a").click(function () {
+            $mask = $("<div class='mask'>\n" +
+                "    <div class='login'>\n" +
+                "        <img src='images/login.png' alt=''>\n" +
+                "        <span></span>\n" +
+                "    </div>\n" +
+                "</div>");
+            $("body").append($mask);
+            return false;
+        });
+
+        // 事件委托
+        $("body").delegate(".login>span", "click", function () {
+            $mask.remove();
+        });
+    });
+</script>
+```
