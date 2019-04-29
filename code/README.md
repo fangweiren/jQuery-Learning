@@ -867,3 +867,56 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 事件命名空间
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 想要事件的命名空间生效，必须满足两个条件：
+         * 1.事件必须通过 on 绑定
+         * 2.事件必须通过 trigger 来触发
+         */
+        // 张三(zs)添加的点击事件
+        $(".son").on("click.zs", function () {
+            alert("click1");
+        });
+
+        // 李四(ls)添加的点击事件
+        $(".son").on("click.ls", function () {
+            alert("click2");
+        });
+    });
+</script>
+
+
+// jQuery 事件命名空间面试题
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        $(".father").on("click.ls", function () {
+            alert("father click1");
+        });
+
+        $(".father").on("click", function () {
+            alert("father click2");
+        });
+
+        $(".son").on("click.ls", function () {
+            alert("son click1");
+        });
+
+        /*
+        利用 trigger 触发子元素带命名空间的事件，那么父元素带相同命名空间的事件也会被触发，
+        而父元素没有命名空间的事件不会被触发
+         */
+        // $(".son").trigger("click.ls");
+
+        /*
+        利用 trigger 触发子元素不带命名空间的事件，那么子元素所有相同类型的事件和父元素所有相同类型的事件也会被触发
+         */
+        $(".son").trigger("click");
+    });
+</script>
+```
