@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>33-jQuery移入移出事件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            /*
+            mouseover/mouseout 事件，子元素被移入移出会触发父元素的事件
+             */
+            // $(".father").mouseover(function () {
+            //     console.log("移入 father");
+            // });
+            // $(".father").mouseout(function () {
+            //     console.log("移出 father");
+            // });
+
+            /*
+            mouseenter/mouseleave 事件，子元素被移入移出不会触发父元素的事件
+             */
+            // $(".father").mouseenter(function () {
+            //     console.log("移入 father");
+            // });
+            // $(".father").mouseleave(function () {
+            //     console.log("移出 father");
+            // });
+
+            /*
+            当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。当鼠标移出这个元素时，会触发指定的第二个函数。而且，会伴随着对鼠标是否仍然处在特定元素中的检测（例如，处在div中的图像），如果是，则会继续保持“悬停”状态，而不触发移出事件（修正了使用mouseout事件的一个常见错误）。
+             */
+            $(".father").hover(function () { // 移入函数
+                console.log("移入 father");
+            }, function () { // // 移出函数
+                console.log("移出 father");
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="father">
+    <div class="son"></div>
+</div>
+</body>
+</html>
