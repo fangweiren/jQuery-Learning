@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>36-tab选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 480px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 50px auto;
+        }
+
+        .nav > li {
+            width: 120px;
+            height: 50px;
+            background: orange;
+            list-style: none;
+            float: left;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav > .current {
+            background: #ccc;
+        }
+
+        .content > li {
+            list-style: none;
+            display: none;
+        }
+
+        .content > .show {
+            display: block;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            /* 此处有 BUG，意在展示
+            // 1.监听选项卡的移入事件
+            $(".nav>li").mouseenter(function () {
+                // 1.1 修改被移入选项卡的背景颜色
+                $(this).addClass("current");
+                // 1.2 获取当前移入选项卡的索引
+                var index = $(this).index();
+                // 1.3 根据索引找到对应的图片
+                var $li = $(".content>li").eq(index);
+                // 1.4 显示图片
+                $li.addClass("show");
+            });
+
+            // 1.监听选项卡的移出事件
+            $(".nav>li").mouseleave(function () {
+                // 1.1 还原移出选项卡的背景颜色
+                $(this).removeClass("current");
+                // 1.2 获取当前移出选项卡的索引
+                var index = $(this).index();
+                // 1.3 根据索引找到对应的图片
+                var $li = $(".content>li").eq(index);
+                // 1.4 隐藏图片
+                $li.removeClass("show");
+            });
+            */
+            // ----------------------------------------------
+
+            // 正片开始
+            // 1.监听选项卡的移入事件
+            $(".nav>li").mouseenter(function () {
+                // 1.1 修改被移入选项卡的背景颜色
+                $(this).addClass("current");
+                // 1.2 还原其他兄弟选项卡的背景颜色
+                $(this).siblings().removeClass("current");
+                // 1.3 获取当前移出选项卡的索引
+                var index = $(this).index();
+                // 1.4 根据索引找到对应的图片
+                var $li = $(".content>li").eq(index);
+                // 1.5 隐藏非当前的其他图片
+                $li.siblings().removeClass("show");
+                // 1.6 显示图片
+                $li.addClass("show");
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul class="nav">
+        <li class="current">iphone 5s</li>
+        <li>iphone 6s</li>
+        <li>iphone 7 Plus</li>
+        <li>iphone 8 Plus</li>
+    </ul>
+    <ul class="content">
+        <li class="show"><img src="images/iphone5s.png" alt=""></li>
+        <li><img src="images/iphone6s.png" alt=""></li>
+        <li><img src="images/iphone7plus.png" alt=""></li>
+        <li><img src="images/iphoneXs.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
