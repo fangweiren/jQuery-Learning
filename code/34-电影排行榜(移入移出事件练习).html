@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>34-电影排行榜(移入移出事件练习)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 300px;
+            height: 450px;
+            border: 1px solid #000;
+            margin: 50px auto;
+        }
+
+        .box > h1 {
+            font-size: 24px;
+            line-height: 35px;
+            padding-left: 10px;
+            color: darkblue;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        ul > li {
+            padding: 5px 10px;
+            border: 1px dashed #ccc;
+        }
+
+        ul > li:nth-child(-n+3) span {
+            background: deeppink;
+        }
+
+        ul > li > span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        .content {
+            overflow: hidden;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .content > img {
+            width: 80px;
+            height: 120px;
+            float: left;
+        }
+
+        .content > p {
+            width: 180px;
+            height: 120px;
+            float: right;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .current .content {
+            display: block;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            // 1.监听 li 的移入事件
+            $("li").mouseenter(function () {
+                $(this).addClass("current");
+            });
+
+            // 2.监听 li 的移出事件
+            $("li").mouseleave(function () {
+                $(this).removeClass("current");
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="box">
+    <h1>电影排行榜</h1>
+    <ul>
+        <li><span>1</span>战狼2
+            <div class="content">
+                <img src="images/zl.jpg" alt="">
+                <p>
+                    故事发生在非洲附近的大海上，主人公冷锋遭遇人生滑铁卢，被“开除军籍”，本想漂泊一生的他，
+                    正当他打算这么做的时候，一场突如其来的意外打破了他的计划，突然被卷入了一场非洲国家叛乱，
+                    本可以安全撤离，却因无法忘记曾经为军人的使命，孤身犯险冲回沦陷区，带领身陷屠杀中的同胞和难民，
+                    展开生死逃亡。随着斗争的持续，体内的狼性逐渐复苏，最终孤身闯入战乱区域，为同胞而战斗。
+                </p>
+            </div>
+        </li>
+        <li><span>2</span>电影名称</li>
+        <li><span>3</span>电影名称</li>
+        <li><span>4</span>电影名称</li>
+        <li><span>5</span>电影名称</li>
+    </ul>
+</div>
+</body>
+</html>

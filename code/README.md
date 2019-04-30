@@ -1012,3 +1012,21 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 电影排行榜(移入移出事件练习)
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.监听 li 的移入事件
+        $("li").mouseenter(function () {
+            $(this).addClass("current");
+        });
+
+        // 2.监听 li 的移出事件
+        $("li").mouseleave(function () {
+            $(this).removeClass("current");
+        });
+    });
+</script>
+```
