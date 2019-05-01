@@ -1112,3 +1112,25 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 对联广告
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.监听网页的滚动
+        $(window).scroll(function () {
+            // 1.1 获取网页滚动的偏移位
+            var offset = $("html, body").scrollTop();
+            // 1.2 判断网页是否滚动到了指定的位置
+            if(offset >= 500){
+                // 1.3 显示广告
+                $("img").show(1000);
+            }else {
+                // 1.4 隐藏广告
+                $("img").hide(1000);
+            }
+        });
+    });
+</script>
+```
