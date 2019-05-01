@@ -1083,3 +1083,32 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+## jQuery　效果
+### jQuery 显示和隐藏动画
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        $("button").eq(0).click(function () {
+            // $("div").css("display", "block");
+            $("div").show(1000, function () { // 动画执行完毕后调用
+                alert("显示动画执行完毕")
+            });
+        });
+
+        $("button").eq(1).click(function () {
+            // $("div").css("display", "none");
+            $("div").hide(1000, function () {
+                alert("隐藏动画执行完毕")
+            });
+        });
+
+        $("button").eq(2).click(function () {
+            $("div").toggle(1000, function () {
+                alert("切换动画执行完毕")
+            });
+        });
+    });
+</script>
+```
