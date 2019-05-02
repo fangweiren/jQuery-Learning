@@ -1134,3 +1134,27 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 滑动动画(展开和收起动画)
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        $("button").eq(0).click(function () {
+            $("div").slideDown(1000, function () {
+                alert("展开完毕")
+            });
+        });
+        $("button").eq(1).click(function () {
+            $("div").slideUp(1000, function () {
+                alert("收起完毕")
+            });
+        });
+        $("button").eq(2).click(function () {
+            $("div").slideToggle(1000, function () {
+                alert("切换完毕")
+            });
+        });
+    });
+</script>
+```
