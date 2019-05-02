@@ -1158,3 +1158,28 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 折叠菜单
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.监听一级菜单的点击
+        $(".nav>li").click(function () {
+            // 1.1 拿到二级菜单
+            var $sub = $(this).children(".sub");
+            // 1.2 让二级菜单展开
+            $sub.slideDown(1000);
+            // 1.3 拿到所有非当前的二级菜单
+            var otherSub = $(this).siblings().children(".sub");
+            // 1.4 让所有非当前的二级菜单收起
+            otherSub.slideUp(1000);
+            // 1.5 让被点击的一级菜单箭头旋转
+            $(this).addClass("current");
+            // 1.6 让所有非被点击的一级菜单箭头还原
+            $(this).siblings().removeClass("current");
+        });
+    });
+</script>
+```
+
