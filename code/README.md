@@ -1212,3 +1212,32 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 淡入淡出动画
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        $("button").eq(0).click(function () {
+            $("div").fadeIn(1000, function () {
+                alert("淡入完毕");
+            })
+        });
+        $("button").eq(1).click(function () {
+            $("div").fadeOut(1000, function () {
+                alert("淡出完毕");
+            })
+        });
+        $("button").eq(2).click(function () {
+            $("div").fadeToggle(1000, function () {
+                alert("切换完毕");
+            })
+        });
+        $("button").eq(3).click(function () {
+            $("div").fadeTo(1000, 0.5, function () {
+                alert("淡入到");
+            })
+        });
+    });
+</script>
+```
