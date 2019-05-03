@@ -1241,3 +1241,27 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 弹窗广告
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.监听 span 的点击事件(右上角关闭按钮)
+        $("span").click(function () {
+            $(".ad").remove();
+        });
+        
+        // 2.执行广告动画
+        /*
+        $(".ad").slideDown(1000, function () {
+            $(".ad").fadeOut(1000, function () {
+                $(".ad").fadeIn(1000);
+            })
+        });
+        */
+        // 等价于上面代码
+        $(".ad").stop().slideDown(1000).fadeOut(1000).fadeIn(1000);
+    });
+</script>
+```
