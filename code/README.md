@@ -1356,3 +1356,26 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 图标特效
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 1.监听 li 移入事件
+        $("li").mouseenter(function () {
+            // 1.1 将图标上移
+            $(this).children("span").animate({
+                top: -50
+            }, 1000, function () {
+                // 1.2 将图标往下移动(不需要动画)
+                $(this).css("top", "50px");
+                // 1.3 将图片复位
+                $(this).animate({
+                    top: 0
+                }, 1000)
+            });
+        });
+    });
+</script>
+```

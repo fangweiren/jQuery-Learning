@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>49-图标特效</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+            width: 400px;
+            height: 250px;
+            border: 1px solid #000;
+            margin: 100px auto;
+        }
+        ul>li {
+            width: 100px;
+            height: 72px;
+            margin-top: 40px;
+            text-align: center;
+            float: left;
+            overflow: hidden;
+        }
+        ul>li>span {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: url("images/baidu.png");
+            position: relative;
+        }
+        ul>li:nth-child(2) span {
+            background: url("images/taobao.png");
+        }
+        ul>li:nth-child(3) span {
+            background: url("images/sina.png");
+        }
+        ul>li:nth-child(4) span {
+            background: url("images/neteast.png");
+        }
+        ul>li:nth-child(5) span {
+            background: url("images/sohu.png");
+        }
+        ul>li:nth-child(6) span {
+            background: url("images/qq.png");
+        }
+        ul>li:nth-child(7) span {
+            background: url("images/youku.png");
+        }
+        ul>li:nth-child(8) span {
+            background: url("images/jingdong.png");
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            // 1.监听 li 移入事件
+            $("li").mouseenter(function () {
+                // 1.1 将图标上移
+                $(this).children("span").animate({
+                    top: -50
+                }, 1000, function () {
+                    // 1.2 将图标往下移动(不需要动画)
+                    $(this).css("top", "50px");
+                    // 1.3 将图片复位
+                    $(this).animate({
+                        top: 0
+                    }, 1000)
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li><span></span><p>百度</p></li>
+    <li><span></span><p>淘宝</p></li>
+    <li><span></span><p>新浪</p></li>
+    <li><span></span><p>网易</p></li>
+    <li><span></span><p>搜狐</p></li>
+    <li><span></span><p>腾讯</p></li>
+    <li><span></span><p>优酷</p></li>
+    <li><span></span><p>京东</p></li>
+</ul>
+</body>
+</html>
