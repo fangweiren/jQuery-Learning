@@ -1416,3 +1416,46 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+## jQuery 文档处理
+### jQuery 添加节点相关方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * 内部插入
+         *   append(content|fn)
+         *   appendTo(content)
+         *   会将元素添加到指定元素内部的最后
+         *
+         *   prepend(content|fn)
+         *   prependTo(content)
+         *   会将元素添加到指定元素内部的最前面
+         *
+         * 外部插入
+         *   after(content|fn)
+         *   insertAfter(content)
+         *   会将元素添加到指定元素外部的后面
+         *
+         *   before(content|fn)
+         *   insertBefore(content)
+         *   会将元素添加到指定元素外部的前面
+         */
+        $("button").click(function () {
+            // 1.创建一个节点
+            var $li = $("<li>新增的li</li>");
+            // 2.添加节点
+            // $("ul").append($li);
+            // $("ul").prepend($li);
+            // $($li).appendTo("ul");
+            // $($li).prependTo("ul");
+
+
+            // $("ul").after($li);
+            // $("ul").before($li);
+            $($li).insertAfter("ul");
+        });
+    });
+</script>
+```
