@@ -1379,3 +1379,40 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### 无限循环滚动
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        // 0.定义变量保存偏移位
+        var offset = 0, timer = null;
+
+        // 1.让图片滚动起来
+        autoPlay();
+
+        // 2.监听鼠标的移入移出事件
+        $("li").hover(function () {
+            // 停止滚动
+            clearInterval(timer);
+            // 给非当前选中添加蒙版
+            $(this).siblings().stop().fadeTo(100, 0.5); // li 的透明度
+        }, function () {
+            // 继续滚动
+            autoPlay();
+            $("li").stop().fadeTo(100, 1);
+        });
+
+
+        function autoPlay() {
+            timer = setInterval(function () {
+                offset += -5;
+                if(offset <= -1560){
+                    offset = 0;
+                }
+                $("ul").css("marginLeft", offset);
+            }, 20);
+        }
+    });
+</script>
+```

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>50-无限循环滚动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 780px;
+            height: 210px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        ul {
+            list-style: none;
+            width: 2340px;
+            height: 210px;
+            background-color: #000;
+        }
+        ul>li {
+            float: left;
+        }
+        img {
+            width: 390px;
+            height: 210px;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script>
+        $(function () {
+            // 0.定义变量保存偏移位
+            var offset = 0, timer = null;
+
+            // 1.让图片滚动起来
+            autoPlay();
+
+            // 2.监听鼠标的移入移出事件
+            $("li").hover(function () {
+                // 停止滚动
+                clearInterval(timer);
+                // 给非当前选中添加蒙版
+                $(this).siblings().stop().fadeTo(100, 0.5); // li 的透明度
+            }, function () {
+                // 继续滚动
+                autoPlay();
+                $("li").stop().fadeTo(100, 1);
+            });
+
+
+            function autoPlay() {
+                timer = setInterval(function () {
+                    offset += -5;
+                    if(offset <= -1560){
+                        offset = 0;
+                    }
+                    $("ul").css("marginLeft", offset);
+                }, 20);
+            }
+        });
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li><img src="images/pic01.jpg" alt=""></li>
+        <li><img src="images/pic02.jpg" alt=""></li>
+        <li><img src="images/pic03.jpg" alt=""></li>
+        <li><img src="images/pic04.jpg" alt=""></li>
+        <li><img src="images/pic01.jpg" alt=""></li>
+        <li><img src="images/pic02.jpg" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
