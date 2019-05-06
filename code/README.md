@@ -1516,3 +1516,25 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 替换节点相关方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /*
+        替换
+        replaceWith(content|fn)
+        replaceAll(selector)
+        替换所有匹配的元素为指定的元素
+        */
+        $("button").click(function () {
+            // 1.新建一个元素
+            var $h6 = $("<h6>我是标题6</h6>");
+            // 2.替换元素
+            // $("h1").replaceWith($h6);
+            $h6.replaceAll("h1");
+        });
+    });
+</script>
+```
