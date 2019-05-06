@@ -1538,3 +1538,34 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 复制节点相关方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /*
+        clone([Even[,deepEven]])
+        如果传入 false 就是浅复制，如果传入 true 就是深复制
+        浅复制只会复制元素，不会复制元素的事件
+        深复制会复制元素，并且还会复制元素的事件
+        */
+        $("button").eq(0).click(function () {
+            // 1.浅复制一个元素
+            var $li = $("li:first").clone(false);
+            // 2.将复制的元素添加到 ul 中
+            $("ul").append($li);
+        });
+        $("button").eq(1).click(function () {
+            // 1.深复制一个元素
+            var $li = $("li:first").clone(true);
+            // 2.将复制的元素添加到 ul 中
+            $("ul").append($li);
+        });
+
+        $("li").click(function () {
+            alert($(this).html());
+        });
+    });
+</script>
+```
