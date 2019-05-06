@@ -1481,3 +1481,38 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 删除节点之 detach() 和 remove() 区别
+```
+<body>
+    <h3><a href="https://blog.csdn.net/qq_37036642/article/details/76596036">参考来源</a></h3>
+    <h3>给页面2个p元素节点绑定点击事件,点击后弹出自己本身的节点内容</h3>
+    <p>元素p1，同时绑定点击事件</p>
+    <p>元素p2，同时绑定点击事件</p>
+    <h3>通过点击2个按钮后观察方法处理的区别</h3>
+
+<button>点击通过remove处理元素p1</button>
+
+<button>点击通过detach处理元素p2</button>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+<script>
+    //给页面上2个p元素都绑定事件
+    $('p').click(function (e) {
+        alert(e.target.innerHTML)
+    });
+
+
+    $("button:first").click(function () {
+        var p = $("p:first").remove();
+        p.css('color', 'red').text('p1通过remove处理后,点击该元素,事件丢失');
+        $("body").append(p);
+    }); //这里的事件数据都会在内存里面消失
+
+
+    $("button:last").click(function () {
+        var p = $("p:last").detach(); //这里的是数据暂时消失  事件却留了下来 当你 append 的时候 数据又回来了
+        p.css('color', 'blue').text('p2通过detach处理后,点击该元素事件存在');
+        $("body").append(p);
+    });
+</script>
+```
