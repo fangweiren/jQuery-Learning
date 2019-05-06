@@ -1459,3 +1459,25 @@ jQuery 是一款优秀的 JavaScript 库，从命名可以看出 jQuery 最主�
     });
 </script>
 ```
+
+### jQuery 删除节点相关方法
+```
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        /**
+         * empty()
+         * 删除指定元素的内容和子元素，指定元素自身不会被删除
+         *
+         * remove([expr])
+         * 删除指定元素
+         *
+         * detach([expr])
+         * 同 remove()，但所有绑定的事件、附加的数据等都会保留下来。
+         */
+        $("button").click(function () {
+            $("div").empty();
+        });
+    });
+</script>
+```
