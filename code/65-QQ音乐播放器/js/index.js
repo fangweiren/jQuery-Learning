@@ -23,6 +23,35 @@ $(function () {
         $(this).toggleClass("list_checked");
     });
 
+    // 5.子菜单播放按钮的监听
+    var $musicPlay = $(".music_play");
+    $(".content_list").delegate(".list_menu_play", "click", function () {
+        var $item = $(this).parents(".list_music");
+        // 5.1 切换播放图标
+        $(this).toggleClass("list_menu_play2");
+        // 5.2 复原其它的播放图标
+        $item.siblings().find(".list_menu_play").removeClass("list_menu_play2");
+        // 5.3 同步底部播放按钮
+        if ($(this).attr("class").indexOf("list_menu_play2") != -1) {
+            // 当前子菜单播放按钮是播放状态
+            $musicPlay.addClass("music_play2");
+            // 让文字高亮
+            $item.find("div").css("color", "#fff");
+            // 排他思想
+            $item.siblings().find("div").css("color", "rgba(255, 255, 255, 0.5)");
+
+        } else {
+            // 当前子菜单播放按钮是暂停状态
+            $musicPlay.removeClass("music_play2");
+            // 让文字不高亮
+            $item.find("div").css("color", "rgba(255, 255, 255, 0.5)");
+        }
+
+        // 5.4 切换序号的状态
+        $item.find(".list_number").toggleClass("list_number2");
+        $item.siblings().find(".list_number").removeClass("list_number2");
+    });
+
     // 4.加载歌曲列表
     getPlayList();
 
@@ -55,7 +84,7 @@ $(function () {
             "                        <div class='list_number'> " + (index + 1) + " </div>\n" +
             "                        <div class='list_name'>" + music.name + "" +
             "                            <div class='list_menu'>\n" +
-            "                                <a href='javascript:;' title='播放'></a>\n" +
+            "                                <a class='list_menu_play' href='javascript:;' title='播放'></a>\n" +
             "                                <a href='javascript:;' title='添加'></a>\n" +
             "                                <a href='javascript:;' title='下载'></a>\n" +
             "                                <a href='javascript:;' title='分享'></a>\n" +
