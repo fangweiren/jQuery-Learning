@@ -103,6 +103,25 @@ $(function () {
         $(".music_next").click(function () {
             $(".list_music").eq(player.nextIndex()).find(".list_menu_play").trigger("click");
         });
+
+        // 7.监听删除按钮的点击
+        $(".content_list").delegate(".list_del", "click", function () {
+            // 找到被点击的音乐
+            var $item = $(this).parents(".list_music");
+
+            // 判断当前删除的是否是正在播放的
+            if ($item.get(0).index == player.currentIndex) {
+                $(".music_next").trigger("click");
+            }
+            $item.remove();
+            player.changeMusic($item.get(0).index);
+
+            // 重新排序
+            $(".list_music").each(function (index, ele) {
+                ele.index = index;
+                $(ele).find(".list_number").text(index + 1);
+            });
+        });
     }
 
 
@@ -126,7 +145,7 @@ $(function () {
             "                        <div class='list_singer'>" + music.singer + "</div>\n" +
             "                        <div class='list_time'>\n" +
             "                            <span>" + music.time + "</span>\n" +
-            "                            <a href='javascript:;' title='删除'></a>\n" +
+            "                            <a class='list_del' href='javascript:;' title='删除'></a>\n" +
             "                        </div>\n" +
             "                    </li>");
 
