@@ -18,7 +18,8 @@ $(function () {
                 $.each(data, function (index, ele) {
                     var $item = createMusicItem(index, ele);
                     $musicList.append($item);
-                })
+                });
+                initMusicInfo(data[0]);
             },
             error: function (e) {
                 console.log(e);
@@ -26,6 +27,28 @@ $(function () {
         });
     }
 
+
+    // 2.初始化歌曲信息
+    function initMusicInfo(music) {
+        // 获取对应的元素
+        var $musicImage = $(".song_info_pic img");
+        var $musicName = $(".song_info_name a");
+        var $musicSinger = $(".song_info_singer a");
+        var $musicAlbum = $(".song_info_album a");
+        var $musicProgressName = $(".music_progress_name");
+        var $musicProgressTime = $(".music_progress_time");
+        var $musicBg = $(".mask_bg");
+
+        // 给获取到的元素赋值
+        $musicImage.attr("src", music.cover);
+        $musicName.text(music.name);
+        $musicSinger.text(music.singer);
+        $musicAlbum.text(music.album);
+        $musicProgressName.text(music.name + " - " + music.singer);
+        $musicProgressTime.text("00:00 / " + music.time);
+        $musicBg.css("background", "url('" + music.cover + "')");
+        console.log("url('" + music.cover + "')");
+    }
 
     // 2.初始化事件监听
     initEvents();
@@ -82,6 +105,9 @@ $(function () {
 
             // 3.5 播放
             player.playMusic($item.get(0).index, $item.get(0).music);
+
+            // 3.6 切换歌曲信息
+            initMusicInfo($item.get(0).music);
         });
 
         // 4.监听底部控制区域播放按钮的点击
