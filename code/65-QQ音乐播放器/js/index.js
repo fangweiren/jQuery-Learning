@@ -4,6 +4,13 @@ $(function () {
 
     var $audio = $("audio");
     var player = new Player($audio);
+    var $progressBar = $(".music_progress_bar");
+    var $progressLine = $(".music_progress_line");
+    var $progressDot = $(".music_progress_dot");
+    var progress = Progress($progressBar, $progressLine, $progressDot);
+    progress.progressClick();
+    progress.progressMove();
+
     // 1.加载歌曲列表
     getPlayList();
 
@@ -47,7 +54,6 @@ $(function () {
         $musicProgressName.text(music.name + " - " + music.singer);
         $musicProgressTime.text("00:00 / " + music.time);
         $musicBg.css("background", "url('" + music.cover + "')");
-        console.log("url('" + music.cover + "')");
     }
 
     // 2.初始化事件监听

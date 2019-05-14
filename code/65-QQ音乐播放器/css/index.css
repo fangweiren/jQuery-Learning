@@ -250,7 +250,7 @@ html, body {
     float: right;
     width: 400px;
     height: 100%;
-    /*background-color: #ccc;*/
+    user-select: none;
 }
 
 .content_right .song_info {
@@ -312,6 +312,7 @@ html, body {
     height: 100%;
     /*background-color: plum;*/
     margin: 0 auto;
+    user-select: none;
 }
 
 .footer_in a {
@@ -383,7 +384,7 @@ html, body {
 }
 
 .music_progress_bar .music_progress_line {
-    width: 100px;
+    width: 0;
     height: 100%;
     background-color: #fff;
 }
@@ -395,7 +396,7 @@ html, body {
     background-color: #fff;
     position: relative;
     top: -5px;
-    left: 100px;
+    left: 0;
 }
 
 .footer_in .music_mode {
