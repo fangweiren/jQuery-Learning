@@ -154,6 +154,16 @@ $(function () {
                 $(ele).find(".list_number").text(index + 1);
             });
         });
+
+        // 8.监听播放的进度
+        player.musicTimeUpdate(function (currentTime, duration, timeStr) {
+            // 同步事件
+            $(".music_progress_time").text(timeStr);
+            // 同步进度条
+            var value = (currentTime / duration) * 100;
+            progress.setProgress(value);
+        });
+
     }
 
 

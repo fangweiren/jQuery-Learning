@@ -381,6 +381,7 @@ html, body {
     height: 4px;
     background-color: rgba(255, 255, 255, 0.5);
     margin-top: 5px;
+    position: relative;
 }
 
 .music_progress_bar .music_progress_line {
@@ -394,7 +395,7 @@ html, body {
     height: 14px;
     border-radius: 50%;
     background-color: #fff;
-    position: relative;
+    position: absolute;
     top: -5px;
     left: 0;
 }
