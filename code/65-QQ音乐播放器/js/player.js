@@ -78,6 +78,9 @@
                 startSec = "0" + startSec;
             }
             return startMin + ":" + startSec + " / " + endMin + ":" + endSec
+        },
+        musicSeekTo: function (value) {
+            this.audio.currentTime = this.audio.duration * value;
         }
     };
     Player.prototype.init.prototype = Player.prototype;

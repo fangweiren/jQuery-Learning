@@ -8,8 +8,12 @@ $(function () {
     var $progressLine = $(".music_progress_line");
     var $progressDot = $(".music_progress_dot");
     var progress = Progress($progressBar, $progressLine, $progressDot);
-    progress.progressClick();
-    progress.progressMove();
+    progress.progressClick(function (value) {
+        player.musicSeekTo(value);
+    });
+    progress.progressMove(function (value) {
+        player.musicSeekTo(value);
+    });
 
     // 1.加载歌曲列表
     getPlayList();
@@ -157,7 +161,7 @@ $(function () {
 
         // 8.监听播放的进度
         player.musicTimeUpdate(function (currentTime, duration, timeStr) {
-            // 同步事件
+            // 同步时间
             $(".music_progress_time").text(timeStr);
             // 同步进度条
             var value = (currentTime / duration) * 100;
