@@ -397,6 +397,7 @@ html, body {
     border-radius: 50%;
     background-color: #fff;
     position: absolute;
+    margin-left: -7px;
     top: -5px;
     left: 0;
 }
@@ -475,6 +476,10 @@ html, body {
     top: 10px;
 }
 
+.music_voice_info .music_voice_icon2 {
+    background-position: 0 -182px;
+}
+
 .music_voice_info .music_voice_bar {
     width: 70px;
     height: 4px;
@@ -482,10 +487,11 @@ html, body {
     position: absolute;
     right: 0;
     top: 18px;
+    cursor: pointer;
 }
 
 .music_voice_bar .music_voice_line {
-    width: 30px;
+    width: 70px;
     height: 100%;
     background-color: #fff;
 }
@@ -497,7 +503,8 @@ html, body {
     background-color: #fff;
     position: relative;
     top: -5px;
-    left: 30px;
+    margin-left: -7px;
+    left: 70px;
 }
 
 .mask_bg {

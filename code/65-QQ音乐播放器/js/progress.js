@@ -21,7 +21,7 @@
                 var eventLeft = event.pageX;
                 // 设置前景的宽度
                 $this.$progressLine.css("width", eventLeft - normalLeft);
-                $this.$progressDot.css("left", eventLeft - normalLeft - $(".music_progress_dot").width() / 2);
+                $this.$progressDot.css("left", eventLeft - normalLeft);
                 // 计算进度条的比例
                 var value = (eventLeft - normalLeft) / $(this).width();
                 callBack(value);
@@ -31,6 +31,7 @@
             var $this = this;
             // 获取进度条原点到窗口的距离
             var normalLeft = this.$progressBar.offset().left;
+            var barWidth = this.$progressBar.width();
             var eventLeft;
 
             // 1.监听鼠标的按下事件
@@ -42,14 +43,11 @@
                     eventLeft = event.pageX;
                     var progressWidth = eventLeft - normalLeft;
                     // 边界处理
-                    if (progressWidth < 0) {
-                        progressWidth = 0;
-                    } else if (progressWidth > $(".music_progress_bar").width()) {
-                        progressWidth = $(".music_progress_bar").width();
+                    if (progressWidth >= 0 && progressWidth <= barWidth) {
+                        // 设置前景的宽度
+                        $this.$progressLine.css("width", progressWidth);
+                        $this.$progressDot.css("left", progressWidth);
                     }
-                    // 设置前景的宽度
-                    $this.$progressLine.css("width", progressWidth);
-                    $this.$progressDot.css("left", progressWidth - $(".music_progress_dot").width() / 2);
                 });
             });
             // 3.监听鼠标的抬起事件
@@ -58,7 +56,7 @@
                 $(document).off("mousemove");
                 $this.isMove = false;
                 // 计算进度条的比例
-                var value = (eventLeft - normalLeft) / $this.$progressBar.width();
+                var value = (eventLeft - normalLeft) / barWidth;
                 callBack(value);
             });
         },

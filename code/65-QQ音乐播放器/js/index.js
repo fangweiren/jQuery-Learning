@@ -4,16 +4,8 @@ $(function () {
 
     var $audio = $("audio");
     var player = new Player($audio);
-    var $progressBar = $(".music_progress_bar");
-    var $progressLine = $(".music_progress_line");
-    var $progressDot = $(".music_progress_dot");
-    var progress = Progress($progressBar, $progressLine, $progressDot);
-    progress.progressClick(function (value) {
-        player.musicSeekTo(value);
-    });
-    progress.progressMove(function (value) {
-        player.musicSeekTo(value);
-    });
+    var progress;
+    var voiceProgress;
 
     // 1.加载歌曲列表
     getPlayList();
@@ -38,7 +30,6 @@ $(function () {
         });
     }
 
-
     // 2.初始化歌曲信息
     function initMusicInfo(music) {
         // 获取对应的元素
@@ -60,7 +51,34 @@ $(function () {
         $musicBg.css("background", "url('" + music.cover + "')");
     }
 
-    // 2.初始化事件监听
+    // 3.初始化进度条
+    initProgress();
+
+    function initProgress() {
+        var $progressBar = $(".music_progress_bar");
+        var $progressLine = $(".music_progress_line");
+        var $progressDot = $(".music_progress_dot");
+        progress = Progress($progressBar, $progressLine, $progressDot);
+        progress.progressClick(function (value) {
+            player.musicSeekTo(value);
+        });
+        progress.progressMove(function (value) {
+            player.musicSeekTo(value);
+        });
+
+        var $voiceBar = $(".music_voice_bar");
+        var $voiceLine = $(".music_voice_line");
+        var $voiceDot = $(".music_voice_dot");
+        voiceProgress = Progress($voiceBar, $voiceLine, $voiceDot);
+        voiceProgress.progressClick(function (value) {
+            player.musicVoiceSeekTo(value);
+        });
+        voiceProgress.progressMove(function (value) {
+            player.musicVoiceSeekTo(value);
+        });
+    }
+
+    // 4.初始化事件监听
     initEvents();
 
     function initEvents() {
@@ -166,6 +184,21 @@ $(function () {
             // 同步进度条
             var value = (currentTime / duration) * 100;
             progress.setProgress(value);
+        });
+
+        // 9.监听声音按钮的点击
+        $(".music_voice_icon").click(function () {
+            // 图标切换
+            $(this).toggleClass("music_voice_icon2");
+            // 声音切换
+            if ($(this).attr("class").indexOf("music_voice_icon2") != -1) {
+                // 静音
+                player.musicVoiceSeekTo(0);
+            } else {
+                // 恢复声音
+                player.musicVoiceSeekTo(1);
+
+            }
         });
 
     }

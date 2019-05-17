@@ -56,6 +56,7 @@
                 var duration = $this.audio.duration;
                 var currentTime = $this.audio.currentTime;
                 var timeStr = $this.formatDate(currentTime, duration);
+                if (isNaN(duration) || isNaN(currentTime)) return;
                 callBack(currentTime, duration, timeStr);
             })
         },
@@ -80,7 +81,14 @@
             return startMin + ":" + startSec + " / " + endMin + ":" + endSec
         },
         musicSeekTo: function (value) {
+            if (isNaN(value)) return;
             this.audio.currentTime = this.audio.duration * value;
+        },
+        musicVoiceSeekTo: function (value) {
+            if (isNaN(value)) return;
+            if (value < 0 || value > 1) return;
+            // 取值范围 0~1
+            this.audio.volume = value;
         }
     };
     Player.prototype.init.prototype = Player.prototype;
