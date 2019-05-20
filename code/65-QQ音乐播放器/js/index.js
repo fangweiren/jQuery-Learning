@@ -23,6 +23,7 @@ $(function () {
                     $musicList.append($item);
                 });
                 initMusicInfo(data[0]);
+                initMusicLyric(data[0]);
             },
             error: function (e) {
                 console.log(e);
@@ -50,6 +51,19 @@ $(function () {
         $musicProgressTime.text("00:00 / " + music.time);
         $musicBg.css("background", "url('" + music.cover + "')");
     }
+
+    // 3.初始化歌词信息
+    function initMusicLyric(music) {
+        var lyric = new Lyric(music.link_lrc);
+        var $lyricContainer = $(".song_lyric");
+        lyric.loadLyric(function () {
+            // 创建歌词列表
+            $.each(lyric.lyrics, function (index, ele) {
+                var $item = $("<li>" + ele + "</li>");
+                $lyricContainer.append($item);
+            })
+        });
+    };
 
     // 3.初始化进度条
     initProgress();

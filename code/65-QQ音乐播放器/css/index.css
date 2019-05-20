@@ -285,6 +285,8 @@ html, body {
 .content_right .song_lyric {
     text-align: center;
     margin-top: 30px;
+    height: 150px;
+    overflow: hidden;
 }
 
 .content_right .song_lyric li {
