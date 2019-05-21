@@ -10,6 +10,7 @@
         },
         times: [],
         lyrics: [],
+        index: -1,
         loadLyric: function (callBack) {
             var $this = this;
             $.ajax({
@@ -26,6 +27,9 @@
         },
         parseLyric: function (data) {
             var $this = this;
+            // 清空上一首歌曲的歌词和时间
+            $this.times = [];
+            $this.lyrics = [];
             var array = data.split("\n");
             // 遍历取出每一行歌词
             $.each(array, function (index, ele) {
@@ -46,6 +50,13 @@
                 var time = parseFloat(Number(min + sec).toFixed(2));
                 $this.times.push(time);
             });
+        },
+        currentIndex: function (currentTime) {
+            if (currentTime >= this.times[0]) {
+                this.index++;
+                this.times.shift(); // 删除数组最前面的一个元素
+            }
+            return this.index;
         }
     };
     Lyric.prototype.init.prototype = Lyric.prototype;

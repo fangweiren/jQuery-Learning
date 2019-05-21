@@ -6,6 +6,7 @@ $(function () {
     var player = new Player($audio);
     var progress;
     var voiceProgress;
+    var lyric;
 
     // 1.加载歌曲列表
     getPlayList();
@@ -54,8 +55,10 @@ $(function () {
 
     // 3.初始化歌词信息
     function initMusicLyric(music) {
-        var lyric = new Lyric(music.link_lrc);
+        lyric = new Lyric(music.link_lrc);
         var $lyricContainer = $(".song_lyric");
+        // 清空上一首音乐的歌词
+        $lyricContainer.html("");
         lyric.loadLyric(function () {
             // 创建歌词列表
             $.each(lyric.lyrics, function (index, ele) {
@@ -150,6 +153,8 @@ $(function () {
 
             // 3.6 切换歌曲信息
             initMusicInfo($item.get(0).music);
+            // 3.7 切换歌词信息
+            initMusicLyric($item.get(0).music);
         });
 
         // 4.监听底部控制区域播放按钮的点击
@@ -198,6 +203,16 @@ $(function () {
             // 同步进度条
             var value = (currentTime / duration) * 100;
             progress.setProgress(value);
+            // 实现歌词同步
+            var index = lyric.currentIndex(currentTime);
+            var $item = $(".song_lyric li").eq(index);
+            $item.addClass("cur");
+            $item.siblings().removeClass("cur");
+
+            if (index <= 2) return;
+            $(".song_lyric").css({
+                marginTop: (-index + 2) * 30
+            });
         });
 
         // 9.监听声音按钮的点击
