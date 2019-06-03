@@ -28,13 +28,15 @@
                     // 1.根据代码片段创建所有的元素
                     var temp = document.createElement("div");
                     temp.innerHTML = selector;
-                    console.log(temp);
+                    /*
                     // 2.将创建好的一级元素添加到 jQuery 中
                     for (var i = 0; i < temp.children.length; i++) {
                         this[i] = temp.children[i]
                     }
                     // 3.给 jQuery 对象添加 length 属性
                     this.length = temp.children.length;
+                    */
+                    [].push.apply(this, temp.children);
                     // 4.返回加工好的 this(jQuery)
                     return this
                 }
