@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>02-jQuery入口函数测试</title>
-    <script src="js/jquery-1.12.4.js"></script>
-    <!--<script src="js/myjQuery-1.0.0.js"></script>-->
+    <!--<script src="js/jquery-1.12.4.js"></script>-->
+    <script src="js/myjQuery-1.0.0.js"></script>
     <script>
         window.onload = function (ev) {
         // $(function () {
@@ -32,11 +32,13 @@
             // 2.传入 html 片段
             // 会将创建好的 DOM 元素存储到 jQuery 对象中返回
             // console.log($('<p>1</p><p>2</p><p>3</p>'));
+            // console.log($('<div><p>1</p></div><div><p>2</p></div>'));
             // console.log($('    <div><p>1</p></div><div><p>2</p></div>    '));
 
             // 3.传入选择器
             // 会将找到的所有元素存储到 jQuery 对象中返回
-            // console.log($('li'));
+            console.log($('li'));
+            // console.log($('.item'));
 
             // 4.传入数组
             // 会将数组中存储的元素依次存储到 jQuery 对象中立返回

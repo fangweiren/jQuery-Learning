@@ -41,6 +41,15 @@
                     return this
                 }
                 // 2.2 判断是否是选择器
+                else {
+                    // 1.根据传入的选择器找到对应的元素
+                    var res = document.querySelectorAll(selector);
+                    // 2.将找到的元素添加到 myjQuery 上
+                    [].push.apply(this, res);
+                    // 3.返回加工好的 this
+                    return this;
+
+                }
             }
         }
     };
@@ -53,9 +62,9 @@
     };
     myjQuery.trim = function (str) {
         // 判断是否支持 trim 方法
-        if(str.trim){
+        if (str.trim) {
             return str.trim();
-        }else {
+        } else {
             return str.replace(/^\s+|\s+$/g, "")
         }
     }
