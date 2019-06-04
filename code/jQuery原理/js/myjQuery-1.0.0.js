@@ -21,8 +21,9 @@
             // 1.传入 '' null undefined NaN 0 false, 返回空的 jQuery 对象
             if (!selector) {
                 return this;
-                // 2.字符串
-            } else if (myjQuery.isString(selector)) {
+            }
+            // 2.字符串
+            else if (myjQuery.isString(selector)) {
                 // 2.1 判断是否是代码片段
                 if (myjQuery.isHTML(selector)) {
                     // 1.根据代码片段创建所有的元素
@@ -38,7 +39,7 @@
                     */
                     [].push.apply(this, temp.children);
                     // 4.返回加工好的 this(jQuery)
-                    return this
+                    return this;
                 }
                 // 2.2 判断是否是选择器
                 else {
@@ -48,7 +49,22 @@
                     [].push.apply(this, res);
                     // 3.返回加工好的 this
                     return this;
-
+                }
+            }
+            // 3.数组
+            else if (typeof selector === "object" && "length" in selector && selector !== window) {
+                // 3.1 真数组
+                if (({}).toString.apply(selector) === "[object Array]") {
+                    [].push.apply(this, selector);
+                    return this;
+                }
+                // 3.1 伪数组
+                else {
+                    // 将自定义的伪数组转换为真数组
+                    var arr = [].slice.call(selector);
+                    // 将真数组转换为伪数组
+                    [].push.apply(this, arr);
+                    return this;
                 }
             }
         }
@@ -61,6 +77,9 @@
         return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && str.length >= 3
     };
     myjQuery.trim = function (str) {
+        if (!myjQuery.isString(str)) {
+            return str;
+        }
         // 判断是否支持 trim 方法
         if (str.trim) {
             return str.trim();
