@@ -52,7 +52,9 @@
                 }
             }
             // 3.数组
-            else if (typeof selector === "object" && "length" in selector && selector !== window) {
+            // else if (typeof selector === "object" && "length" in selector && selector !== window) {
+            else if (myjQuery.isArray(selector)) {
+                /*
                 // 3.1 真数组
                 if (({}).toString.apply(selector) === "[object Array]") {
                     [].push.apply(this, selector);
@@ -66,6 +68,12 @@
                     [].push.apply(this, arr);
                     return this;
                 }
+                */
+                // 将自定义的伪数组转换为真数组
+                var arr = [].slice.call(selector);
+                // 将真数组转换为伪数组
+                [].push.apply(this, arr);
+                return this;
             }
         }
     };
@@ -86,7 +94,19 @@
         } else {
             return str.replace(/^\s+|\s+$/g, "")
         }
-    }
+    };
+    myjQuery.isObject = function (sele) {
+        return typeof sele === "object";
+    };
+    myjQuery.isWindow = function (sele) {
+        return sele === window;
+    };
+    myjQuery.isArray = function (sele) {
+        if (myjQuery.isObject(sele) && !myjQuery.isWindow(sele) && "length" in sele) {
+            return true;
+        }
+        return false;
+    };
     myjQuery.prototype.init.prototype = myjQuery.prototype;
     window.myjQuery = window.$ = myjQuery;
 })(window);
