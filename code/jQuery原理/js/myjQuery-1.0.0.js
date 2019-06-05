@@ -22,6 +22,10 @@
             if (!selector) {
                 return this;
             }
+            // 1.1 方法处理
+            else if (myjQuery.isFunction(selector)) {
+                console.log("是方法");
+            }
             // 2.字符串
             else if (myjQuery.isString(selector)) {
                 // 2.1 判断是否是代码片段
@@ -85,35 +89,47 @@
         }
     };
 
-    myjQuery.isString = function (str) {
-        return typeof str === "string"
-    };
-    myjQuery.isHTML = function (str) {
-        return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && str.length >= 3
-    };
-    myjQuery.trim = function (str) {
-        if (!myjQuery.isString(str)) {
-            return str;
-        }
-        // 判断是否支持 trim 方法
-        if (str.trim) {
-            return str.trim();
-        } else {
-            return str.replace(/^\s+|\s+$/g, "")
+    myjQuery.extend = myjQuery.prototype.extend = function (obj) {
+        // console.log(this);
+        for (var key in obj) {
+            this[key] = obj[key];
         }
     };
-    myjQuery.isObject = function (sele) {
-        return typeof sele === "object";
-    };
-    myjQuery.isWindow = function (sele) {
-        return sele === window;
-    };
-    myjQuery.isArray = function (sele) {
-        if (myjQuery.isObject(sele) && !myjQuery.isWindow(sele) && "length" in sele) {
-            return true;
+    myjQuery.extend({
+        isString: function (str) {
+            return typeof str === "string"
+        },
+        isHTML: function (str) {
+            return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && str.length >= 3
+        },
+        trim: function (str) {
+            if (!myjQuery.isString(str)) {
+                return str;
+            }
+            // 判断是否支持 trim 方法
+            if (str.trim) {
+                return str.trim();
+            } else {
+                return str.replace(/^\s+|\s+$/g, "")
+            }
+        },
+        isObject: function (sele) {
+            return typeof sele === "object";
+        },
+        isWindow: function (sele) {
+            return sele === window;
+        },
+        isArray: function (sele) {
+            if (myjQuery.isObject(sele) && !myjQuery.isWindow(sele) && "length" in sele) {
+                return true;
+            }
+            return false;
+        },
+        isFunction: function (sele) {
+            return typeof sele === "function";
         }
-        return false;
-    };
+    });
+
     myjQuery.prototype.init.prototype = myjQuery.prototype;
     window.myjQuery = window.$ = myjQuery;
 })(window);
