@@ -39,7 +39,7 @@
                     */
                     [].push.apply(this, temp.children);
                     // 4.返回加工好的 this(jQuery)
-                    return this;
+                    // return this;
                 }
                 // 2.2 判断是否是选择器
                 else {
@@ -48,7 +48,7 @@
                     // 2.将找到的元素添加到 myjQuery 上
                     [].push.apply(this, res);
                     // 3.返回加工好的 this
-                    return this;
+                    // return this;
                 }
             }
             // 3.数组
@@ -73,8 +73,15 @@
                 var arr = [].slice.call(selector);
                 // 将真数组转换为伪数组
                 [].push.apply(this, arr);
-                return this;
+                // return this;
             }
+            // 4.除上述类型以外
+            else {
+                this[0] = selector;
+                this.length = 1;
+                // return this;
+            }
+            return this;
         }
     };
 
