@@ -86,7 +86,16 @@
                 // return this;
             }
             return this;
-        }
+        },
+        jquery: "1.1.0",
+        selector: "",
+        length: 0,
+        // [].push 找到数组的 push 方法
+        // 冒号前面的 push 将来由 myjQuery 对象调用
+        // 相当于 [].push.apply(this);
+        push: [].push,
+        sort: [].sort,
+        splice: [].splice
     };
 
     myjQuery.extend = myjQuery.prototype.extend = function (obj) {
@@ -129,13 +138,15 @@
             return typeof sele === "function";
         },
         ready: function (fn) {
-            // 判断 DOM 是否加载完毕
+            // 如果已经加载过了, 那么直接调用回调
             if (document.readyState == "complete") {
                 fn();
+            // 如果没有加载过,判断是否支持addEventListener方法, 支持就使用addEventListener方法监听DOM加载
             } else if (document.addEventListener) {
                 document.addEventListener("DOMContentLoaded", function () {
                     fn();
                 })
+            // 如果不支持addEventListener方法, 就使用attachEvent方法监听
             } else {
                 document.attachEvent("onreadystatechange", function () {
                     if (document.readyState == "complete") {
