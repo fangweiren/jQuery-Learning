@@ -24,7 +24,7 @@
             }
             // 1.1 方法处理
             else if (myjQuery.isFunction(selector)) {
-                console.log("是方法");
+                myjQuery.ready(selector);
             }
             // 2.字符串
             else if (myjQuery.isString(selector)) {
@@ -127,6 +127,22 @@
         },
         isFunction: function (sele) {
             return typeof sele === "function";
+        },
+        ready: function (fn) {
+            // 判断 DOM 是否加载完毕
+            if (document.readyState == "complete") {
+                fn();
+            } else if (document.addEventListener) {
+                document.addEventListener("DOMContentLoaded", function () {
+                    fn();
+                })
+            } else {
+                document.attachEvent("onreadystatechange", function () {
+                    if (document.readyState == "complete") {
+                        fn();
+                    }
+                })
+            }
         }
     });
 
