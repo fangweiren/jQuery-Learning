@@ -90,12 +90,31 @@
         jquery: "1.1.0",
         selector: "",
         length: 0,
-        // [].push 找到数组的 push 方法
-        // 冒号前面的 push 将来由 myjQuery 对象调用
-        // 相当于 [].push.apply(this);
+        /*
+        [].push 找到数组的 push 方法
+        冒号前面的 push 将来由 myjQuery 对象调用
+        相当于 [].push.apply(this);
+        */
         push: [].push,
         sort: [].sort,
-        splice: [].splice
+        splice: [].splice,
+        toArray: function () {
+            return [].slice.call(this);
+        },
+        get: function (num) {
+            // 没有传递参数
+            if (arguments.length === 0) {
+                return this.toArray();
+            }
+            // 传递不是负数
+            else if (num >= 0) {
+                return this[num];
+            }
+            // 传递负数
+            else {
+                return this[this.length + num];
+            }
+        }
     };
 
     myjQuery.extend = myjQuery.prototype.extend = function (obj) {
