@@ -114,6 +114,21 @@
             else {
                 return this[this.length + num];
             }
+        },
+        eq: function (num) {
+            // 没有传递参数
+            if (arguments.length === 0) {
+                return new myjQuery();
+            }
+            else {
+                return myjQuery(this.get(num));
+            }
+        },
+        first: function () {
+            return this.eq(0);
+        },
+        last: function () {
+            return this.eq(-1);
         }
     };
 
@@ -160,13 +175,15 @@
             // 如果已经加载过了, 那么直接调用回调
             if (document.readyState == "complete") {
                 fn();
+            }
             // 如果没有加载过,判断是否支持addEventListener方法, 支持就使用addEventListener方法监听DOM加载
-            } else if (document.addEventListener) {
+            else if (document.addEventListener) {
                 document.addEventListener("DOMContentLoaded", function () {
                     fn();
                 })
+            }
             // 如果不支持addEventListener方法, 就使用attachEvent方法监听
-            } else {
+            else {
                 document.attachEvent("onreadystatechange", function () {
                     if (document.readyState == "complete") {
                         fn();
