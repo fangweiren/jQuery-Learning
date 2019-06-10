@@ -131,7 +131,7 @@
             return this.eq(-1);
         },
         each: function (fn) {
-            myjQuery.each(this, fn);
+            return myjQuery.each(this, fn);
         }
     };
 
@@ -219,6 +219,29 @@
                     }
                 }
             }
+            return obj;
+        },
+        map: function (obj, fn) {
+            var res = [];
+            // 1.判断是不是数组
+            if (myjQuery.isArray(obj)) {
+                for (var i = 0; i < obj.length; i++) {
+                    var temp = fn(obj[i], i);
+                    if (temp) {
+                        res.push(temp);
+                    }
+                }
+            }
+            // 2.判断是不是对象
+            else if (myjQuery.isObject(obj)) {
+                for (var key in obj) {
+                    var temp = fn(obj[key], key);
+                    if (temp) {
+                        res.push(temp);
+                    }
+                }
+            }
+            return res;
         }
     });
 
