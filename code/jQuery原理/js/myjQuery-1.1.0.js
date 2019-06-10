@@ -129,6 +129,9 @@
         },
         last: function () {
             return this.eq(-1);
+        },
+        each: function (fn) {
+            myjQuery.each(this, fn);
         }
     };
 
@@ -189,6 +192,32 @@
                         fn();
                     }
                 })
+            }
+        },
+        each: function (obj, fn) {
+            // 1.判断是不是数组
+            if (myjQuery.isArray(obj)) {
+                for (var i = 0; i < obj.length; i++) {
+                    // var res = fn(i, obj[i]);
+                    var res = fn.call(obj[i], i, obj[i]);
+                    if (res === true) {
+                        continue;
+                    } else if (res === false) {
+                        break;
+                    }
+                }
+            }
+            // 2.判断是不是对象
+            else if (myjQuery.isObject(obj)) {
+                for (var key in obj) {
+                    // var res = fn(key, obj[key]);
+                    var res = fn.call(obj[key], key, obj[key]);
+                    if (res === true) {
+                        continue;
+                    } else if (res === false) {
+                        break;
+                    }
+                }
             }
         }
     });
