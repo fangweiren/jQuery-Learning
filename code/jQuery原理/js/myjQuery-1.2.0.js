@@ -245,6 +245,17 @@
         }
     });
 
+    myjQuery.prototype.extend({
+        empty: function () {
+            // 1.遍历所有找到的元素
+            this.each(function (key, value) {
+                value.innerHTML = "";
+            });
+            // 2.方便链式编程
+            return this;
+        }
+    });
+
     myjQuery.prototype.init.prototype = myjQuery.prototype;
     window.myjQuery = window.$ = myjQuery;
 })(window);
