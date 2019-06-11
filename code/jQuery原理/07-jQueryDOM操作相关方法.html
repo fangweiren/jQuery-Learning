@@ -14,18 +14,18 @@
              */
             var btn = document.getElementsByTagName("button")[0];
             btn.onclick = function () {
-                $("div").empty();
-                console.log($("div").empty());
+                // $("div").empty();
+                // console.log($("div").empty());
 
                 // $("div").remove();
                 // console.log($("div").remove());
-                // $("div").remove(".box");
+                $("div").remove(".box");
             }
         });
     </script>
 </head>
 <body>
-<button>调用empty</button>
+<button>调用remove</button>
 <div>
     我是div
     <p>我是段落</p>

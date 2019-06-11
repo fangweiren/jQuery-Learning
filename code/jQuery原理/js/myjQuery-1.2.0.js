@@ -253,6 +253,36 @@
             });
             // 2.方便链式编程
             return this;
+        },
+        remove: function (sele) {
+            if (arguments.length === 0) {
+                // 1.遍历所有找到的元素
+                this.each(function (key, value) {
+                    // 根据遍历到的元素找到对应的父元素
+                    var parent = value.parentNode;
+                    // 通过父元素删除指定的元素
+                    parent.removeChild(value);
+                });
+            } else {
+                var $this = this;
+                // 1.根据传入的选择器找到对应的元素
+                $(sele).each(function (key, value) {
+                    // 2.遍历找到的元素，获取对应的类型
+                    var type = value.tagName;
+                    // 3.遍历指定的元素
+                    $this.each(function (k, v) {
+                        // 4.获取指定元素的类型
+                        var t = v.tagName;
+                        // 5.判断找到的元素的类型和指定元素的类型是否匹配
+                        if (t === type) {
+                            var parent = value.parentNode;
+                            parent.removeChild(value);
+                        }
+                    })
+                })
+            }
+
+            return this;
         }
     });
 
