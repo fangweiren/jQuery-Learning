@@ -292,6 +292,19 @@
                     value.innerHTML = content;
                 })
             }
+        },
+        text: function (content) {
+            if (arguments.length === 0) {
+                var res = "";
+                this.each(function (key, value) {
+                    res += value.innerText;
+                });
+                return res;
+            } else {
+                this.each(function (key, value) {
+                    value.innerText = content;
+                })
+            }
         }
     });
 
