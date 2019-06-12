@@ -283,6 +283,15 @@
             }
 
             return this;
+        },
+        html: function (content) {
+            if (arguments.length === 0) {
+                return this[0].innerHTML;
+            } else {
+                this.each(function (key, value) {
+                    value.innerHTML = content;
+                })
+            }
         }
     });
 
